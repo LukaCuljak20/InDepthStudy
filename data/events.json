@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Halloween party",
+    "description": "Annual Halloween party for students.",
+    "location": "Karner",
+    "startDate": "2026-10-31T17:00",
+    "endDate": "2026-11-01T01:00",
+    "capacity": 60,
+    "category": "Social"
+  },
+  {
+    "id": 2,
+    "title": "ESN Meetup",
+    "description": "ESN meetup for members.",
+    "location": "University library",
+    "startDate": "2026-12-03T18:30",
+    "endDate": "2026-12-03T21:00",
+    "capacity": 40,
+    "category": "Social"
+  }
+]
