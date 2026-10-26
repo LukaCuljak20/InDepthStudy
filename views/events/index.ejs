@@ -1,0 +1,53 @@
+<%- include('../partials/header', { title, flash }) %>
+
+<h1>Events</h1>
+
+<form class="filters" method="GET" action="/events">
+  <label>
+    Category
+    <select name="category">
+      <option value="">All</option>
+      <% categories.forEach((c) => { %>
+        <option value="<%= c %>" <%= filters.category === c ? 'selected' : '' %>><%= c %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label class="inline">
+    <input type="checkbox" name="upcoming" value="true" <%= filters.upcoming ? 'checked' : '' %>>
+    Upcoming only
+  </label>
+  <button type="submit">Filter</button>
+  <a href="/events">Reset</a>
+</form>
+
+<% if (events.length === 0) { %>
+  <p class="empty">No events match your filter.</p>
+<% } else { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th><th>Category</th><th>Starts</th><th>Location</th><th>Capacity</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% events.forEach((e) => { %>
+        <tr>
+          <td><a href="/events/<%= e.id %>"><%= e.title %></a></td>
+          <td><span class="tag"><%= e.category %></span></td>
+          <td><%= fmtDate(e.startDate) %></td>
+          <td><%= e.location %></td>
+          <td><%= e.capacity %></td>
+          <td class="actions">
+            <a href="/events/<%= e.id %>/edit">Edit</a>
+            <form method="POST" action="/events/<%= e.id %>?_method=DELETE"
+                  onsubmit="return confirm('Delete this event?');">
+              <button class="link danger" type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>
+
+<%- include('../partials/footer') %>

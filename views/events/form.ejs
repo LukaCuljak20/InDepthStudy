@@ -1,0 +1,62 @@
+<%- include('../partials/header', { title, flash }) %>
+
+<p><a href="/events">&larr; All events</a></p>
+<h1><%= heading %></h1>
+
+<% const hasErrors = Object.keys(errors).length > 0; %>
+<% if (hasErrors) { %>
+  <div class="flash flash-error">Please fix the highlighted fields.</div>
+<% } %>
+
+<form class="event-form" method="POST" action="<%= action %>" novalidate>
+  <label>
+    Title
+    <input type="text" name="title" value="<%= event.title %>" class="<%= errors.title ? 'invalid' : '' %>">
+    <% if (errors.title) { %><span class="error"><%= errors.title %></span><% } %>
+  </label>
+
+  <label>
+    Category
+    <select name="category" class="<%= errors.category ? 'invalid' : '' %>">
+      <% categories.forEach((c) => { %>
+        <option value="<%= c %>" <%= event.category === c ? 'selected' : '' %>><%= c %></option>
+      <% }) %>
+    </select>
+    <% if (errors.category) { %><span class="error"><%= errors.category %></span><% } %>
+  </label>
+
+  <label>
+    Location
+    <input type="text" name="location" value="<%= event.location %>" class="<%= errors.location ? 'invalid' : '' %>">
+    <% if (errors.location) { %><span class="error"><%= errors.location %></span><% } %>
+  </label>
+
+  <div class="row">
+    <label>
+      Starts
+      <input type="datetime-local" name="startDate" value="<%= event.startDate %>" class="<%= errors.startDate ? 'invalid' : '' %>">
+      <% if (errors.startDate) { %><span class="error"><%= errors.startDate %></span><% } %>
+    </label>
+    <label>
+      Ends
+      <input type="datetime-local" name="endDate" value="<%= event.endDate %>" class="<%= errors.endDate ? 'invalid' : '' %>">
+      <% if (errors.endDate) { %><span class="error"><%= errors.endDate %></span><% } %>
+    </label>
+  </div>
+
+  <label>
+    Capacity
+    <input type="number" name="capacity" value="<%= event.capacity %>" class="<%= errors.capacity ? 'invalid' : '' %>">
+    <% if (errors.capacity) { %><span class="error"><%= errors.capacity %></span><% } %>
+  </label>
+
+  <label>
+    Description
+    <textarea name="description" rows="4" class="<%= errors.description ? 'invalid' : '' %>"><%= event.description %></textarea>
+    <% if (errors.description) { %><span class="error"><%= errors.description %></span><% } %>
+  </label>
+
+  <button type="submit">Save</button>
+</form>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,26 @@
+<%- include('../partials/header', { title, flash }) %>
+
+<p><a href="/events">&larr; All events</a></p>
+
+<article class="card">
+  <h1><%= event.title %></h1>
+  <p><span class="tag"><%= event.category %></span></p>
+
+  <dl>
+    <dt>Starts</dt><dd><%= fmtDate(event.startDate) %></dd>
+    <dt>Ends</dt><dd><%= fmtDate(event.endDate) %></dd>
+    <dt>Location</dt><dd><%= event.location %></dd>
+    <dt>Capacity</dt><dd><%= event.capacity %></dd>
+    <dt>Description</dt><dd><%= event.description || '—' %></dd>
+  </dl>
+
+  <div class="actions">
+    <a class="button" href="/events/<%= event.id %>/edit">Edit</a>
+    <form method="POST" action="/events/<%= event.id %>?_method=DELETE"
+          onsubmit="return confirm('Delete this event?');">
+      <button class="danger" type="submit">Delete</button>
+    </form>
+  </div>
+</article>
+
+<%- include('../partials/footer') %>

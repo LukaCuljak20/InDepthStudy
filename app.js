@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 
 app.use(errorHandler);
 
-const POST = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 if (require.main === module) {
   app.listen(PORT, () => {

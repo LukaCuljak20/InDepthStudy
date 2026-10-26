@@ -33,7 +33,7 @@ function validate(body) {
 // GET /events?category=Workshop&upcoming=true (index)
 exports.index = (req, res) => {
   const { category, upcoming } = req.query;
-  const events = repo.findAll({ actegory, upcomingOnly: upcoming === true });
+  const events = repo.findAll({ category, upcomingOnly: upcoming === true });
   res.render("events/index", {
     title: "Events",
     events,
