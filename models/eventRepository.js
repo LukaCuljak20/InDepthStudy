@@ -58,7 +58,7 @@ exports.create = (data) => {
   const nextId = events.reduce((max, e) => Math.max(max, e.id), 0) + 1;
   const event = { id: nextId, ...data };
   events.push(event);
-  save(event);
+  save(events);
   return event;
 };
 
